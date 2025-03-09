@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0ieun4sf4eyv"]
+
+[ext_resource type="Script" uid="uid://dpji8d2ncu82l" path="res://Entities/Characters/player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://ceu35o3pvpkpw" path="res://Graphics/icon.svg" id="2_onrkg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8kmxx"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"A_B_Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"A_B_Move",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Dan_Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"FD_OB_Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"FD_OB_Move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_onrkg")
+}],
+"loop": true,
+"name": &"TEST",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8kmxx"]
+radius = 62.0081
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+motion_mode = 1
+script = ExtResource("1_4flbx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8kmxx")
+animation = &"TEST"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8kmxx")
+
+[node name="Camera2D" type="Camera2D" parent="."]

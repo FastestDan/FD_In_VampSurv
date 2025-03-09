@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxfyrnji67y30"]
+
+[ext_resource type="Script" uid="uid://ud1fwyoj6h0b" path="res://Utility/title_screen.gd" id="1_i5ewn"]
+[ext_resource type="PackedScene" uid="uid://cgvudanh716pv" path="res://Utility/blank_button.tscn" id="2_ocjmq"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_i5ewn")
+
+[node name="MainLayout" type="CanvasLayer" parent="."]
+
+[node name="GameName" type="Label" parent="MainLayout"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 576.0
+offset_bottom = 137.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 100
+text = "FD in Vampire Survivors"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" parent="MainLayout" instance=ExtResource("2_ocjmq")]
+offset_left = 880.5
+offset_top = 644.5
+offset_right = 1039.5
+offset_bottom = 755.5
+text = "Play"
+
+[node name="SettingsButton" parent="MainLayout" instance=ExtResource("2_ocjmq")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -149.0
+offset_top = -288.0
+offset_right = 149.0
+offset_bottom = -177.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Settings"
+
+[node name="ExitButton" parent="MainLayout" instance=ExtResource("2_ocjmq")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -140.0
+offset_right = 106.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Exit"
+
+[node name="CharaSelectLayout" type="CanvasLayer" parent="."]
+
+[node name="SettingsLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelSelectLayout" type="CanvasLayer" parent="."]
+
+[connection signal="click_end" from="MainLayout/PlayButton" to="." method="_on_play_button_click_end"]

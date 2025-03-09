@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://ds11c2liopm0r"]
+
+[ext_resource type="Texture2D" uid="uid://ceu35o3pvpkpw" path="res://Graphics/icon.svg" id="1_j63wi"]
+
+[resource]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"A_B_Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"A_B_Move",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Dan_Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"FD_OB_Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"FD_OB_Move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j63wi")
+}],
+"loop": true,
+"name": &"TEST",
+"speed": 5.0
+}]
