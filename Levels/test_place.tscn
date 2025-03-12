@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=4 uid="uid://6ab4j70jc882"]
 
 [ext_resource type="Script" uid="uid://6d17hbv6b8y2" path="res://Levels/test_place.gd" id="1_fq31j"]
-[ext_resource type="PackedScene" uid="uid://b0ieun4sf4eyv" path="res://Entities/Characters/player.tscn" id="1_wwc8b"]
 [ext_resource type="Texture2D" uid="uid://bbhkc2cwiipgy" path="res://Graphics/Outside_A2_VS.png" id="2_64u15"]
 [ext_resource type="PackedScene" uid="uid://dosut8m42pclc" path="res://Entities/Enemies/enemy.tscn" id="4_ktb0f"]
+[ext_resource type="PackedScene" uid="uid://b0ieun4sf4eyv" path="res://Entities/Characters/player.tscn" id="5_jnlao"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_64u15"]
 texture = ExtResource("2_64u15")
@@ -1626,7 +1626,7 @@ tile_set = SubResource("TileSet_ktb0f")
 [node name="Enemy" parent="." instance=ExtResource("4_ktb0f")]
 position = Vector2(948, -23)
 
-[node name="Player" parent="." instance=ExtResource("1_wwc8b")]
-
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(977, 575)
+
+[node name="Player" parent="." instance=ExtResource("5_jnlao")]

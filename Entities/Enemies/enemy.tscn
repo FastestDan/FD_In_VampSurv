@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dosut8m42pclc"]
+[gd_scene load_steps=9 format=3 uid="uid://dosut8m42pclc"]
 
 [ext_resource type="Script" uid="uid://thocaxo3yeod" path="res://Entities/Enemies/enemy.gd" id="1_7o3vr"]
 [ext_resource type="Texture2D" uid="uid://ceu35o3pvpkpw" path="res://Graphics/icon.svg" id="2_wbf3x"]
+[ext_resource type="PackedScene" uid="uid://mb6e0qvmpqwr" path="res://hurt_box.tscn" id="3_4jf10"]
+[ext_resource type="PackedScene" uid="uid://bjoyg867elcu3" path="res://hit_box.tscn" id="4_ihd1f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6rqwt"]
 animations = [{
@@ -15,15 +17,40 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wbf3x"]
-radius = 60.075
+radius = 11.0454
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1grr"]
+size = Vector2(43, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftopr"]
+size = Vector2(28, 26)
 
 [node name="Enemy" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_7o3vr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_6rqwt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -1)
 shape = SubResource("CircleShape2D_wbf3x")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_4jf10")]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_o1grr")
+
+[node name="HitBox" parent="." instance=ExtResource("4_ihd1f")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_ftopr")
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+
+[editable path="HurtBox"]
+[editable path="HitBox"]
