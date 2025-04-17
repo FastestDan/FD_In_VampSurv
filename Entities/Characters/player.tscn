@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b0ieun4sf4eyv"]
+[gd_scene load_steps=18 format=3 uid="uid://b0ieun4sf4eyv"]
 
 [ext_resource type="Script" uid="uid://dpji8d2ncu82l" path="res://Entities/Characters/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://bswmmcfiwvq7w" path="res://Graphics/Characters/FD_OR_Idle.png" id="2_micro"]
@@ -55,6 +55,11 @@ animations = [{
 "name": &"Dan_Idle",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"Dan_Move",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t6wfi")
@@ -94,6 +99,11 @@ animations = [{
 "name": &"FD_OB_Move",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"FD_OB_Move_Mirror",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_onrkg")
@@ -110,7 +120,11 @@ height = 14.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t6wfi"]
 size = Vector2(8, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yoyrg"]
+radius = 73.8011
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(5, 5)
 motion_mode = 1
 script = ExtResource("1_4flbx")
 
@@ -121,16 +135,38 @@ animation = &"FD_OB_Idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_micro")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
-
 [node name="HurtBox" parent="." instance=ExtResource("5_yoyrg")]
-collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 shape = SubResource("RectangleShape2D_t6wfi")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="Attacks" type="Node2D" parent="."]
+
+[node name="SpearTimer" type="Timer" parent="Attacks"]
+wait_time = 1.5
+autostart = true
+
+[node name="SpearAttackTimer" type="Timer" parent="Attacks/SpearTimer"]
+wait_time = 0.075
+
+[node name="TekiDetector" type="Area2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TekiDetector"]
+light_mask = 4
+visibility_layer = 4
+shape = SubResource("CircleShape2D_yoyrg")
+
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="timeout" from="Attacks/SpearTimer" to="." method="_on_spear_timer_timeout"]
+[connection signal="timeout" from="Attacks/SpearTimer/SpearAttackTimer" to="." method="_on_spear_attack_timer_timeout"]
+[connection signal="body_entered" from="TekiDetector" to="." method="_on_teki_detector_body_entered"]
+[connection signal="body_exited" from="TekiDetector" to="." method="_on_teki_detector_body_exited"]
 
 [editable path="HurtBox"]
