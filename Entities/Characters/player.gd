@@ -73,7 +73,7 @@ func get_random_target():
 	if enemy_near.size() > 0:
 		return enemy_near.pick_random().global_position
 	else:
-		return self.velocitya
+		return Vector2.UP
 
 
 func _on_teki_detector_body_entered(body: Node2D) -> void:

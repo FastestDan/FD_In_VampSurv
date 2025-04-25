@@ -121,10 +121,10 @@ height = 14.0
 size = Vector2(8, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yoyrg"]
-radius = 73.8011
+radius = 72.5336
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-scale = Vector2(5, 5)
+scale = Vector2(2.5, 2.5)
 motion_mode = 1
 script = ExtResource("1_4flbx")
 
@@ -156,6 +156,8 @@ wait_time = 0.075
 [node name="TekiDetector" type="Area2D" parent="."]
 light_mask = 4
 visibility_layer = 4
+collision_layer = 4
+collision_mask = 4
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TekiDetector"]

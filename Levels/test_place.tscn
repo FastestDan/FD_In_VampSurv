@@ -1638,7 +1638,6 @@ tile_set = SubResource("TileSet_ktb0f")
 position = Vector2(977, 575)
 
 [node name="Player" parent="." instance=ExtResource("5_jnlao")]
-scale = Vector2(2, 2)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_ktb0f")]
 spawns = Array[ExtResource("5_x1c1m")]([SubResource("Resource_ka1i8")])
