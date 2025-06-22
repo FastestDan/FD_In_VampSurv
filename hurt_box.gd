@@ -6,7 +6,7 @@ extends Area2D
 @onready var collision = $CollisionShape2D
 @onready var disableTimer = $DisableTimer
 
-signal hurt(damage)
+signal hurt(damage, angle, knockback)
 
 
 
@@ -23,7 +23,16 @@ func _on_area_entered(area: Area2D) -> void:
 					if area.has_method("disable"):
 						area.disable()
 			var damage = area.damage
-			emit_signal("hurt", damage)
+			var angle = Vector2.ZERO
+			var knockback = 1
+			
+			if not area.get("angle") == null:
+				angle = area.angle
+
+			if not area.get("knockback") == null:
+				knockback = area.knockback
+			
+			emit_signal("hurt", damage, angle, knockback)
 			if area.has_method("enemy_hit"):
 				area.enemy_hit(1)
 

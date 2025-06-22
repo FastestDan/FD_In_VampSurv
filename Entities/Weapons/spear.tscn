@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://begqxbm48yk23"]
+[gd_scene load_steps=5 format=3 uid="uid://begqxbm48yk23"]
 
 [ext_resource type="Script" uid="uid://n77gkqm4ds1e" path="res://Entities/Weapons/spear.gd" id="1_1fboy"]
 [ext_resource type="Texture2D" uid="uid://cx0dk0arqm4tp" path="res://Graphics/Weapons/SPEAR_TEST.png" id="1_igx6i"]
+[ext_resource type="AudioStream" uid="uid://dhodv5eijh8nb" path="res://Audio/SOUND_TEST.wav" id="3_28uxw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1fboy"]
 size = Vector2(41.0122, 78.4888)
 
 [node name="Spear" type="Area2D" groups=["attack"]]
 top_level = true
+scale = Vector2(0.1, 0.1)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_1fboy")
@@ -30,5 +32,9 @@ one_shot = true
 autostart = true
 
 [node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_28uxw")
+volume_db = -5.0
+pitch_scale = 1.5
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

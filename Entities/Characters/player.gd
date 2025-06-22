@@ -14,6 +14,9 @@ var spear_magazine = 1
 var spear_speed = 1.5
 var spear_level = 1
 
+var prev_direction = Vector2.ZERO
+var curr_direction = Vector2.RIGHT
+
 var enemy_near = []
 
 
@@ -21,7 +24,9 @@ func _physics_process(delta: float) -> void:
 	movement()
 	
 func movement():
+	prev_direction = curr_direction
 	var vec = Input.get_vector("go_left", "go_right", "go_up", "go_down")
+	curr_direction = vec
 	velocity = vec.normalized() * SPEED
 	#if velocity.length() > 0:
 		#$AnimatedSprite2D.play()
@@ -46,7 +51,7 @@ func attack():
 		if speartimer.is_stopped():
 			speartimer.start()
 
-func _on_hurt_box_hurt(damage: Variant) -> void:
+func _on_hurt_box_hurt(damage, _angle, _knockback) -> void:
 	hp -= damage
 	print(hp)
 
@@ -73,7 +78,7 @@ func get_random_target():
 	if enemy_near.size() > 0:
 		return enemy_near.pick_random().global_position
 	else:
-		return Vector2.UP
+		return curr_direction
 
 
 func _on_teki_detector_body_entered(body: Node2D) -> void:

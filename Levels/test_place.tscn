@@ -1615,8 +1615,8 @@ script = ExtResource("5_x1c1m")
 time_start = 0
 time_end = 30
 enemy = ExtResource("6_4lwi8")
-enemy_num = 2
-enemy_spawn_delay = 5
+enemy_num = 5
+enemy_spawn_delay = 2
 metadata/_custom_type_script = "uid://bm37djycivhqo"
 
 [node name="TEST_PLACE" type="Node"]

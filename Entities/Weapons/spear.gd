@@ -5,7 +5,7 @@ var level = 1
 var hp = 1
 var speed = 150
 var damage = 5
-var knock = 100
+var knockback = 100
 var size = 1.0
 
 var target = Vector2.ZERO
@@ -21,8 +21,12 @@ func _ready():
 			hp = 1
 			speed = 150
 			damage = 5
-			knock = 100
+			knockback = 100
 			size = 1.0
+			
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1, 1) * size, 1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
 	
 func _physics_process(delta: float) -> void:
 	position += angle*speed*delta

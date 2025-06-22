@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="FD_In_VampSurv"
-config/version="0.02"
+config/version="0.03"
 run/main_scene="uid://6ab4j70jc882"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Graphics/icon.svg"

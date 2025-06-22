@@ -121,7 +121,7 @@ height = 14.0
 size = Vector2(8, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yoyrg"]
-radius = 72.5336
+radius = 177.6
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(2.5, 2.5)
@@ -142,7 +142,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_t6wfi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(2.5, 2.5)
 
 [node name="Attacks" type="Node2D" parent="."]
 
