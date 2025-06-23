@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://cs6dgunrt2bww"]
+
+[ext_resource type="Texture2D" uid="uid://c4ykd3uveuntd" path="res://Utility/P5Tarot - Back.png" id="1_4g8t8"]
+[ext_resource type="Script" uid="uid://dpk8asmsbaxhk" path="res://Entities/Enemies/bakuhatsu.gd" id="1_32vda"]
+[ext_resource type="AudioStream" uid="uid://bts7l1bbpfvrk" path="res://Audio/BAKU_TEST.wav" id="2_4g8t8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4g8t8"]
+blend_mode = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4g8t8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4g8t8")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_4g8t8")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"poof",
+"speed": 4.0
+}]
+
+[node name="Bakuhatsu" type="Sprite2D"]
+z_index = 1
+script = ExtResource("1_32vda")
+
+[node name="BakuSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4g8t8")
+pitch_scale = 1.53
+autoplay = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_4g8t8")
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_4g8t8")
+animation = &"poof"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

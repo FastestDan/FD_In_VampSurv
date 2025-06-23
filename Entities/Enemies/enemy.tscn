@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dosut8m42pclc"]
+[gd_scene load_steps=10 format=3 uid="uid://dosut8m42pclc"]
 
 [ext_resource type="Script" uid="uid://thocaxo3yeod" path="res://Entities/Enemies/enemy.gd" id="1_7o3vr"]
 [ext_resource type="Texture2D" uid="uid://ceu35o3pvpkpw" path="res://Graphics/icon.svg" id="2_wbf3x"]
 [ext_resource type="PackedScene" uid="uid://mb6e0qvmpqwr" path="res://hurt_box.tscn" id="3_4jf10"]
 [ext_resource type="PackedScene" uid="uid://bjoyg867elcu3" path="res://hit_box.tscn" id="4_ihd1f"]
+[ext_resource type="AudioStream" uid="uid://d1s2qn6m6sdj7" path="res://Audio/DED_TEST.wav" id="5_ihd1f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6rqwt"]
 animations = [{
@@ -40,6 +41,7 @@ shape = SubResource("CircleShape2D_wbf3x")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_4jf10")]
 collision_mask = 4
+HurtBoxType = 1
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 shape = SubResource("RectangleShape2D_o1grr")
@@ -49,6 +51,9 @@ collision_layer = 2
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource("RectangleShape2D_ftopr")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ihd1f")
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 
