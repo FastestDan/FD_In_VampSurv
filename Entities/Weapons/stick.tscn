@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://dax002th7eff0"]
+
+[ext_resource type="Script" uid="uid://b6b5v5nn0once" path="res://Entities/Weapons/stick.gd" id="1_6o16f"]
+[ext_resource type="Texture2D" uid="uid://cx0dk0arqm4tp" path="res://Graphics/Weapons/SPEAR_TEST.png" id="2_tjdt8"]
+[ext_resource type="AudioStream" uid="uid://dhodv5eijh8nb" path="res://Audio/SOUND_TEST.wav" id="3_7x1jd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fboy"]
+size = Vector2(268.701, 523.259)
+
+[node name="Stick" type="Area2D" groups=["attack"]]
+top_level = true
+scale = Vector2(0.1, 0.1)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_6o16f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.88, 3.279, 1)
+top_level = true
+rotation = -0.785398
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tjdt8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(-4.76837e-06, 4.76837e-06)
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_1fboy")
+
+[node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="DirectionTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="ResetTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+autostart = true
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7x1jd")
+volume_db = -5.0
+pitch_scale = 1.5
+autoplay = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
+[connection signal="timeout" from="ResetTimer" to="." method="_on_reset_timer_timeout"]

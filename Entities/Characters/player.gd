@@ -6,21 +6,26 @@ var hp = 100
 # Тут находятся оружия (смысл этого хардкода, если VampSurv - рогалик - непонятно)
 var spear = preload("res://Entities/Weapons/spear.tscn")
 var shippu = preload("res://Entities/Weapons/shippu.tscn")
+var stick = preload("res://Entities/Weapons/stick.tscn")
 
 @onready var speartimer: Timer = get_node("%SpearTimer")
 @onready var spearattacktimer: Timer = speartimer.get_node("%SpearAttackTimer")
 @onready var shipputimer: Timer = get_node("%ShippuTimer")
 @onready var shippuattacktimer: Timer = shipputimer.get_node("%ShippuAttackTimer")
+@onready var stickbase = get_node("%Stick")
 
 var spear_bullets = 0
 var spear_magazine = 1
 var spear_speed = 1.5
-var spear_level = 0
+var spear_level = 1
 
 var shippu_bullets = 0
 var shippu_magazine = 4
 var shippu_speed = 3
-var shippu_level = 1
+var shippu_level = 0
+
+var stick_bullets = 1
+var stick_level = 0
 
 var prev_direction = Vector2.RIGHT
 
@@ -64,6 +69,9 @@ func attack():
 		shipputimer.wait_time = shippu_speed
 		if shipputimer.is_stopped():
 			shipputimer.start()
+			
+	if stick_level > 0:
+		spawn_stick()
 
 func _on_hurt_box_hurt(damage, _angle, _knockback) -> void:
 	hp -= damage
@@ -106,6 +114,16 @@ func _on_shippu_attack_timer_timeout() -> void:
 			shippuattacktimer.start()
 		else:
 			shippuattacktimer.stop()
+			
+
+func spawn_stick():
+	var all_sticks = stickbase.get_child_count()
+	var charge = stick_bullets - all_sticks
+	while charge > 0:
+		var newstick = stick.instantiate()
+		newstick.position = position
+		stickbase.add_child(newstick)
+		charge -=1
 
 		
 func get_random_target():
