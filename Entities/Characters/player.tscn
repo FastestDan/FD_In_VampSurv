@@ -147,11 +147,20 @@ zoom = Vector2(2.5, 2.5)
 [node name="Attacks" type="Node2D" parent="."]
 
 [node name="SpearTimer" type="Timer" parent="Attacks"]
+unique_name_in_owner = true
 wait_time = 1.5
-autostart = true
 
 [node name="SpearAttackTimer" type="Timer" parent="Attacks/SpearTimer"]
+unique_name_in_owner = true
 wait_time = 0.075
+
+[node name="ShippuTimer" type="Timer" parent="Attacks"]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[node name="ShippuAttackTimer" type="Timer" parent="Attacks/ShippuTimer"]
+unique_name_in_owner = true
+wait_time = 0.2
 
 [node name="TekiDetector" type="Area2D" parent="."]
 light_mask = 4
@@ -168,6 +177,8 @@ shape = SubResource("CircleShape2D_yoyrg")
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attacks/SpearTimer" to="." method="_on_spear_timer_timeout"]
 [connection signal="timeout" from="Attacks/SpearTimer/SpearAttackTimer" to="." method="_on_spear_attack_timer_timeout"]
+[connection signal="timeout" from="Attacks/ShippuTimer" to="." method="_on_shippu_timer_timeout"]
+[connection signal="timeout" from="Attacks/ShippuTimer/ShippuAttackTimer" to="." method="_on_shippu_attack_timer_timeout"]
 [connection signal="body_entered" from="TekiDetector" to="." method="_on_teki_detector_body_entered"]
 [connection signal="body_exited" from="TekiDetector" to="." method="_on_teki_detector_body_exited"]
 

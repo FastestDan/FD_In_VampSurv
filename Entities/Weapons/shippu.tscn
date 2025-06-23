@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxlmhcjey2po"]
+
+[ext_resource type="Script" uid="uid://b37fg1tcmp1lw" path="res://Entities/Weapons/shippu.gd" id="1_ck47p"]
+[ext_resource type="Texture2D" uid="uid://cx0dk0arqm4tp" path="res://Graphics/Weapons/SPEAR_TEST.png" id="2_kspft"]
+[ext_resource type="AudioStream" uid="uid://dhodv5eijh8nb" path="res://Audio/SOUND_TEST.wav" id="3_l64kx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fboy"]
+size = Vector2(268.701, 523.259)
+
+[node name="Shippu" type="Area2D" groups=["attack"]]
+top_level = true
+scale = Vector2(0.1, 0.1)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_ck47p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.133, 3.552, 0, 1)
+rotation = -0.785398
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_kspft")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(-4.76837e-06, 4.76837e-06)
+rotation = -0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_1fboy")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_l64kx")
+volume_db = -5.0
+pitch_scale = 1.5
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
