@@ -1656,4 +1656,4 @@ spawns = Array[ExtResource("5_x1c1m")]([SubResource("Resource_ka1i8"), SubResour
 
 [node name="ExpPickUp" parent="Loot" instance=ExtResource("7_4lwi8")]
 position = Vector2(1319, 466)
-exp = 10
+exp = 50

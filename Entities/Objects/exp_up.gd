@@ -8,7 +8,7 @@ var sprite_med = preload("res://Graphics/Objects/EXP_TEST_MEDIUM.png")
 var sprite_big = preload("res://Graphics/Objects/EXP_TEST_BIG.png")
 
 var target = null
-var speed = 0
+var speed = -1
 
 @onready var sprite = $Sprite2D
 @onready var collision = $CollisionShape2D

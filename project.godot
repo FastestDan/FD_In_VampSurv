@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="FD_In_VampSurv"
-config/version="0.05"
+config/version="0.07"
 run/main_scene="uid://6ab4j70jc882"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Graphics/icon.svg"
+
+[autoload]
+
+UpgradeDb="*res://Utility/upgrade_db.tscn"
 
 [display]
 

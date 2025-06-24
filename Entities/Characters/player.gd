@@ -42,6 +42,14 @@ var enemy_near = []
 @onready var up_sound = get_node("%UP_sound")
 @onready var option = preload("res://Utility/weap_item.tscn")
 
+
+var backpack = []
+var choptions = []
+var armor = 0
+var cooldown = 0
+var add_size = 0
+var more = 0
+
 func _ready() -> void:
 	lvup.visible = false
 	attack()
@@ -195,27 +203,55 @@ func cap_calc():
 func levelup():
 	up_sound.play()
 	lv_label.text = str("Lv: ", player_level)
-	#var tween = lvup.create_tween()
-	#tween.tween_property(lvup, "position", Vector2(220, 50), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
-	#tween.play()
+	var tween = lvup.create_tween()
+	tween.tween_property(lvup, "position", Vector2(-299.5, 229), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.play()
 	lvup.visible = true
 	var options = 0
 	var allop = 3
 	while options < allop:
 		var choice = option.instantiate()
+		choice.item = get_random_item()
 		up_opts.add_child(choice)
 		options += 1
-	
 	get_tree().paused = true
 	
 func upgrade_player(upgrade):
 	var options = up_opts.get_children()
 	for i in options:
 		i.queue_free()
+	choptions.clear()
+	backpack.append(upgrade)
 	lvup.visible = false
+	lvup.position = Vector2(1595.0, 229)
 	get_tree().paused = false
 	exp_calc(0)
 
 func set_expBar(now_val=1, max_val=100):
 	expBar.value = now_val
 	expBar.max_value = max_val
+	
+func get_random_item():
+	var db = []
+	for i in UpgradeDb.UPGRADES:
+		if i in backpack:
+			pass
+		elif i in choptions:
+			pass
+		elif UpgradeDb.UPGRADES[i]["type"] == "item":
+			pass
+		elif UpgradeDb.UPGRADES[i]["prev"].size() > 0:
+			for j in UpgradeDb.UPGRADES[i]["prev"]:
+				if not j in backpack:
+					pass
+				else:
+					db.append(i)
+					
+		else:
+			db.append(i)
+	if db.size() > 0:
+		var random = db.pick_random()
+		choptions.append(random)
+		return random
+	else:
+		return null

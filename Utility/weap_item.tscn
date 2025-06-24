@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxsu6t8io6pmy"]
 
-[ext_resource type="Texture2D" uid="uid://4in74iphx22a" path="res://Graphics/Weapons/ICON_TEST.png" id="1_h8stf"]
+[ext_resource type="Texture2D" uid="uid://4in74iphx22a" path="res://Graphics/Upgrades/ICON_TEST.png" id="1_h8stf"]
 [ext_resource type="Script" uid="uid://bdyd6v5bh3nf4" path="res://Utility/weap_item.gd" id="1_xrrv3"]
 
 [node name="WeapItem" type="ColorRect"]
