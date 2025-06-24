@@ -23,7 +23,6 @@ texture = ExtResource("2_kspft")
 light_mask = 4
 visibility_layer = 4
 position = Vector2(-4.76837e-06, 4.76837e-06)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_1fboy")
 
 [node name="Timer" type="Timer" parent="."]

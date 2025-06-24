@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://xuvtfp5dggeq"]
+
+[ext_resource type="Script" uid="uid://cmfrs6ayv3def" path="res://Entities/Objects/exp_up.gd" id="1_f67cl"]
+[ext_resource type="Texture2D" uid="uid://bf423glda587p" path="res://Graphics/Objects/EXP_TEST_SMALL.png" id="1_y5t5g"]
+[ext_resource type="AudioStream" uid="uid://df2x1bg0xljat" path="res://Audio/EXP_TEST.wav" id="3_slqb6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slqb6"]
+size = Vector2(40, 54)
+
+[node name="ExpPickUp" type="Area2D" groups=["loot"]]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_f67cl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_y5t5g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_slqb6")
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_slqb6")
+
+[connection signal="finished" from="Sound" to="." method="_on_sound_finished"]

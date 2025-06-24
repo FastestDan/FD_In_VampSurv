@@ -30,6 +30,7 @@ enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
 
 player=""
 attack=""
+loot=""
 
 [input]
 

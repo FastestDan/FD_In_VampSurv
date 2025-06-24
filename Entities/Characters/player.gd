@@ -3,6 +3,12 @@ extends CharacterBody2D
 
 var SPEED = 150.0
 var hp = 100
+var prev_direction = Vector2.RIGHT
+var exp = 0
+var player_level = 1
+var all_exp = 0
+
+
 # Тут находятся оружия (смысл этого хардкода, если VampSurv - рогалик - непонятно)
 var spear = preload("res://Entities/Weapons/spear.tscn")
 var shippu = preload("res://Entities/Weapons/shippu.tscn")
@@ -27,12 +33,15 @@ var shippu_level = 0
 var stick_bullets = 1
 var stick_level = 0
 
-var prev_direction = Vector2.RIGHT
-
 var enemy_near = []
+
+@onready var expBar = get_node("%EXP_Bar")
+@onready var lv_label = get_node("%LEVEL")
+
 
 func _ready() -> void:
 	attack()
+	set_expBar(exp, cap_calc())
 
 func _physics_process(delta: float) -> void:
 	movement()
@@ -141,3 +150,46 @@ func _on_teki_detector_body_entered(body: Node2D) -> void:
 func _on_teki_detector_body_exited(body: Node2D) -> void:
 	if enemy_near.has(body):
 		enemy_near.erase(body)
+
+
+func _on_grabber_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		area.target = self
+
+
+func _on_collector_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		var exp_get = area.picked()
+		exp_calc(exp_get)
+		
+		
+func exp_calc(exp_get):
+	var exp_left = cap_calc()
+	all_exp += exp_get
+	if exp + all_exp >= exp_left:
+		all_exp -= exp_left - exp
+		player_level += 1
+		lv_label.text = str("Lv: ", player_level)
+		exp = 0
+		exp_left = cap_calc()
+		exp_calc(0)
+	else:
+		exp += all_exp
+		all_exp = 0
+	
+	set_expBar(exp, exp_left)
+	
+func cap_calc():
+	var cap = player_level
+	if player_level < 20:
+		cap = player_level * 5
+	elif player_level < 40:
+		cap = 95 * (player_level-19) * 8
+	else:
+		cap = 255 + (player_level - 39) * 12
+	return cap
+
+
+func set_expBar(now_val=1, max_val=100):
+	expBar.value = now_val
+	expBar.max_value = max_val

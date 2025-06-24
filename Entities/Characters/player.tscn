@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b0ieun4sf4eyv"]
+[gd_scene load_steps=21 format=3 uid="uid://b0ieun4sf4eyv"]
 
 [ext_resource type="Script" uid="uid://dpji8d2ncu82l" path="res://Entities/Characters/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://bswmmcfiwvq7w" path="res://Graphics/Characters/FD_OR_Idle.png" id="2_micro"]
@@ -123,6 +123,14 @@ size = Vector2(8, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_yoyrg"]
 radius = 177.6
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_t6wfi"]
+radius = 37.2086
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vcjb0"]
+radius = 6.81175
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yoyrg"]
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(2.5, 2.5)
 motion_mode = 1
@@ -142,7 +150,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_t6wfi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
 zoom = Vector2(2.5, 2.5)
 
 [node name="Attacks" type="Node2D" parent="."]
@@ -167,6 +174,7 @@ wait_time = 0.2
 unique_name_in_owner = true
 
 [node name="TekiDetector" type="Area2D" parent="."]
+visible = false
 light_mask = 4
 visibility_layer = 4
 collision_layer = 4
@@ -178,6 +186,45 @@ light_mask = 4
 visibility_layer = 4
 shape = SubResource("CircleShape2D_yoyrg")
 
+[node name="Grabber" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grabber"]
+shape = SubResource("CircleShape2D_t6wfi")
+
+[node name="Collector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collector"]
+shape = SubResource("CircleShape2D_vcjb0")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 769.0
+offset_bottom = 433.0
+
+[node name="EXP_Bar" type="TextureProgressBar" parent="GUI/UI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 721.0
+offset_bottom = 40.0
+texture_under = SubResource("PlaceholderTexture2D_yoyrg")
+
+[node name="LEVEL" type="Label" parent="GUI/UI/EXP_Bar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 30
+text = "Lv: 1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attacks/SpearTimer" to="." method="_on_spear_timer_timeout"]
 [connection signal="timeout" from="Attacks/SpearTimer/SpearAttackTimer" to="." method="_on_spear_attack_timer_timeout"]
@@ -185,5 +232,7 @@ shape = SubResource("CircleShape2D_yoyrg")
 [connection signal="timeout" from="Attacks/ShippuTimer/ShippuAttackTimer" to="." method="_on_shippu_attack_timer_timeout"]
 [connection signal="body_entered" from="TekiDetector" to="." method="_on_teki_detector_body_entered"]
 [connection signal="body_exited" from="TekiDetector" to="." method="_on_teki_detector_body_exited"]
+[connection signal="area_entered" from="Grabber" to="." method="_on_grabber_area_entered"]
+[connection signal="area_entered" from="Collector" to="." method="_on_collector_area_entered"]
 
 [editable path="HurtBox"]
