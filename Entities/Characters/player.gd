@@ -21,25 +21,29 @@ var stick = preload("res://Entities/Weapons/stick.tscn")
 @onready var stickbase = get_node("%Stick")
 
 var spear_bullets = 0
-var spear_magazine = 1
+var spear_magazine = 0
 var spear_speed = 1.5
-var spear_level = 1
+var spear_level = 0
 
 var shippu_bullets = 0
-var shippu_magazine = 4
+var shippu_magazine = 0
 var shippu_speed = 3
 var shippu_level = 0
 
-var stick_bullets = 1
+var stick_bullets = 0
 var stick_level = 0
 
 var enemy_near = []
 
 @onready var expBar = get_node("%EXP_Bar")
 @onready var lv_label = get_node("%LEVEL")
-
+@onready var lvup = get_node("%LvUP")
+@onready var up_opts = get_node("%UP_Options")
+@onready var up_sound = get_node("%UP_sound")
+@onready var option = preload("res://Utility/weap_item.tscn")
 
 func _ready() -> void:
+	lvup.visible = false
 	attack()
 	set_expBar(exp, cap_calc())
 
@@ -169,10 +173,9 @@ func exp_calc(exp_get):
 	if exp + all_exp >= exp_left:
 		all_exp -= exp_left - exp
 		player_level += 1
-		lv_label.text = str("Lv: ", player_level)
 		exp = 0
 		exp_left = cap_calc()
-		exp_calc(0)
+		levelup()
 	else:
 		exp += all_exp
 		all_exp = 0
@@ -189,6 +192,29 @@ func cap_calc():
 		cap = 255 + (player_level - 39) * 12
 	return cap
 
+func levelup():
+	up_sound.play()
+	lv_label.text = str("Lv: ", player_level)
+	#var tween = lvup.create_tween()
+	#tween.tween_property(lvup, "position", Vector2(220, 50), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	#tween.play()
+	lvup.visible = true
+	var options = 0
+	var allop = 3
+	while options < allop:
+		var choice = option.instantiate()
+		up_opts.add_child(choice)
+		options += 1
+	
+	get_tree().paused = true
+	
+func upgrade_player(upgrade):
+	var options = up_opts.get_children()
+	for i in options:
+		i.queue_free()
+	lvup.visible = false
+	get_tree().paused = false
+	exp_calc(0)
 
 func set_expBar(now_val=1, max_val=100):
 	expBar.value = now_val

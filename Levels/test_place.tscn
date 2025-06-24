@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://6ab4j70jc882"]
+[gd_scene load_steps=12 format=4 uid="uid://6ab4j70jc882"]
 
 [ext_resource type="Script" uid="uid://6d17hbv6b8y2" path="res://Levels/test_place.gd" id="1_fq31j"]
 [ext_resource type="Texture2D" uid="uid://bbhkc2cwiipgy" path="res://Graphics/Outside_A2_VS.png" id="2_64u15"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b0ieun4sf4eyv" path="res://Entities/Characters/player.tscn" id="5_jnlao"]
 [ext_resource type="Script" uid="uid://bm37djycivhqo" path="res://Utility/spawn_info.gd" id="5_x1c1m"]
 [ext_resource type="PackedScene" uid="uid://dosut8m42pclc" path="res://Entities/Enemies/enemy.tscn" id="6_4lwi8"]
+[ext_resource type="PackedScene" uid="uid://xuvtfp5dggeq" path="res://Entities/Objects/exp_up.tscn" id="7_4lwi8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_64u15"]
 texture = ExtResource("2_64u15")
@@ -1652,3 +1653,7 @@ position = Vector2(977, 575)
 spawns = Array[ExtResource("5_x1c1m")]([SubResource("Resource_ka1i8"), SubResource("Resource_x1c1m")])
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
+
+[node name="ExpPickUp" parent="Loot" instance=ExtResource("7_4lwi8")]
+position = Vector2(1319, 466)
+exp = 10

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://thocaxo3yeod" path="res://Entities/Enemies/enemy.gd" id="1_7o3vr"]
 [ext_resource type="Texture2D" uid="uid://ceu35o3pvpkpw" path="res://Graphics/icon.svg" id="2_wbf3x"]
-[ext_resource type="PackedScene" uid="uid://mb6e0qvmpqwr" path="res://hurt_box.tscn" id="3_4jf10"]
-[ext_resource type="PackedScene" uid="uid://bjoyg867elcu3" path="res://hit_box.tscn" id="4_ihd1f"]
+[ext_resource type="PackedScene" uid="uid://mb6e0qvmpqwr" path="res://Utility/hurt_box.tscn" id="3_4jf10"]
+[ext_resource type="PackedScene" uid="uid://bjoyg867elcu3" path="res://Utility/hit_box.tscn" id="4_ihd1f"]
 [ext_resource type="AudioStream" uid="uid://d1s2qn6m6sdj7" path="res://Audio/DED_TEST.wav" id="5_ihd1f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6rqwt"]

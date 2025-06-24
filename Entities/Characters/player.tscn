@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bswmmcfiwvq7w" path="res://Graphics/Characters/FD_OR_Idle.png" id="2_micro"]
 [ext_resource type="Texture2D" uid="uid://ceu35o3pvpkpw" path="res://Graphics/icon.svg" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://ckmt6j8cnea7c" path="res://Graphics/Characters/FD_OR_Idle_Mirror.png" id="3_yoyrg"]
-[ext_resource type="PackedScene" uid="uid://mb6e0qvmpqwr" path="res://hurt_box.tscn" id="5_yoyrg"]
+[ext_resource type="PackedScene" uid="uid://mb6e0qvmpqwr" path="res://Utility/hurt_box.tscn" id="5_yoyrg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t6wfi"]
 atlas = ExtResource("2_micro")
@@ -204,26 +204,72 @@ shape = SubResource("CircleShape2D_vcjb0")
 
 [node name="UI" type="Control" parent="GUI"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 769.0
-offset_bottom = 433.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
 
 [node name="EXP_Bar" type="TextureProgressBar" parent="GUI/UI"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 721.0
+offset_left = -947.0
+offset_right = 945.0
 offset_bottom = 40.0
 texture_under = SubResource("PlaceholderTexture2D_yoyrg")
 
 [node name="LEVEL" type="Label" parent="GUI/UI/EXP_Bar"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -66.0
+offset_bottom = 42.0
+grow_horizontal = 0
 theme_override_font_sizes/font_size = 30
 text = "Lv: 1"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="LvUP" type="Panel" parent="GUI/UI"]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -299.5
+offset_top = 229.0
+offset_right = 299.5
+offset_bottom = 810.0
+grow_horizontal = 2
+
+[node name="UP_label" type="Label" parent="GUI/UI/LvUP"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -66.0
+offset_top = 22.0
+offset_right = 66.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Level Up!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UP_Options" type="VBoxContainer" parent="GUI/UI/LvUP"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 80.0
+offset_top = 101.0
+offset_right = 80.0
+offset_bottom = 101.0
+scale = Vector2(2.5, 2.5)
+
+[node name="UP_sound" type="AudioStreamPlayer" parent="GUI/UI/LvUP"]
+unique_name_in_owner = true
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attacks/SpearTimer" to="." method="_on_spear_timer_timeout"]
