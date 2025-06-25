@@ -9,6 +9,8 @@ var exp = 0
 var player_level = 1
 var all_exp = 0
 var time = 0
+var stango = 0
+var warewa = "FD"
 
 
 # Тут находятся оружия (смысл этого хардкода, если VampSurv - рогалик - непонятно)
@@ -72,6 +74,7 @@ func movement():
 	if vec != Vector2.ZERO:
 		prev_direction = vec.round()
 	velocity = vec.normalized() * SPEED
+	print(velocity)
 	#if velocity.length() > 0:
 		#$AnimatedSprite2D.play()
 	#else:
@@ -80,12 +83,27 @@ func movement():
 	#if velocity.x != 0:
 		#$AnimatedSprite2D.animation = "walk"
 		#$AnimatedSprite2D.flip_h = velocity.x < 0
-	if velocity.x != 0:
-		if velocity.x < 0:
-			$AnimatedSprite2D.animation = "FD_OB_Idle_Mirror"
-		else:
-			$AnimatedSprite2D.animation = "FD_OB_Idle"
-		$AnimatedSprite2D.flip_h = velocity.x < 0
+	if velocity.x != 0 or velocity.y != 0:
+		stango = 1
+		match warewa:
+			"FD":
+				if velocity.x < 0:
+					$AnimatedSprite2D.animation = "FD_OB_Move_Mirror"
+				else:
+					$AnimatedSprite2D.animation = "FD_OB_Move"
+			"Alpha":
+				$AnimatedSprite2D.animation = "A_B_Move"
+	elif velocity.x == 0 and stango == 1:
+		stango = 0
+		match warewa:
+			"FD":
+				if prev_direction.x < 0:
+					$AnimatedSprite2D.animation = "FD_OB_Idle_Mirror"
+				else:
+					$AnimatedSprite2D.animation = "FD_OB_Idle"
+			"Alpha":
+				$AnimatedSprite2D.animation = "A_B_Idle"
+	$AnimatedSprite2D.flip_h = prev_direction.x < 0
 	$AnimatedSprite2D.play()
 
 
