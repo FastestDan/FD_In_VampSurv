@@ -21,12 +21,38 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	
+	"shippu1":{
+		"icon": WEAPON_PATH + "SPEAR_TEST.png",
+		"name": "Shippu",
+		"desc": "A spear that gets thrown at random enemies",
+		"level": "Lv: 1",
+		"prev": [],
+		"type": "weapon"
+	},
+	
+	"shippu2":{
+		"icon": WEAPON_PATH + "SPEAR_TEST.png",
+		"name": "Shippu",
+		"desc": "An additional spear is thrown",
+		"level": "Lv: 2",
+		"prev": ["shippu1"],
+		"type": "weapon"
+	},
+	"shippu3":{
+		"icon": WEAPON_PATH + "SPEAR_TEST.png",
+		"name": "Shippu",
+		"desc": "An additional spear is thrown",
+		"level": "Lv: 3",
+		"prev": ["shippu2"],
+		"type": "weapon"
+	},
+	
 	"food":{
 		"icon": ICON_PATH + "ICON_TEST.png",
 		"name": "Food",
 		"desc": "Heals for 20 HP",
 		"level": "",
 		"prev": [],
-		"type": "item"
+		"type": "food"
 	},
 }

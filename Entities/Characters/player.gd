@@ -238,13 +238,13 @@ func upgrade_player(upgrade):
 			spear_magazine +=1
 		"shippu1":
 			shippu_level = 1
-			spear_magazine +=1
+			shippu_magazine +=1
 		"shippu2":
-			spear_level = 2
-			spear_magazine +=1
+			shippu_level = 2
+			shippu_magazine +=1
 		"shippu3":
-			spear_level = 3
-			spear_magazine +=1
+			shippu_level = 3
+			shippu_magazine +=1
 		"armor1", "armor2", "armor3", "armor4":
 			armor += 1.5
 		"food":

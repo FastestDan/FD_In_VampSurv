@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var hp = 25
 @export var knockback_recover = 3.5
 @export var exp = 1
+@export var damage = 1
 
 var knockback = Vector2.ZERO
 
@@ -12,12 +13,15 @@ var knockback = Vector2.ZERO
 @onready var loot = get_tree().get_first_node_in_group("loot")
 @onready var hit_sound = $Hit
 @onready var sprite = $AnimatedSprite2D
+@onready var hitbox = $HitBox
 
 var baku_anim = preload("res://Entities/Enemies/bakuhatsu.tscn")
 var exp_pickup = preload("res://Entities/Objects/exp_up.tscn")
 
 signal remove_from_array(object)
 
+func _ready() -> void:
+	hitbox.damage = damage
 
 func _physics_process(delta: float) -> void:
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_recover)
