@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://fn0516axoypa"]
+
+[ext_resource type="Script" uid="uid://cignxskngxsyp" path="res://Utility/inventory.gd" id="1_yxhc0"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xf40r"]
+
+[node name="BackpackSlot" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("PlaceholderTexture2D_xf40r")
+script = ExtResource("1_yxhc0")
+
+[node name="SlotIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

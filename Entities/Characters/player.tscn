@@ -204,17 +204,43 @@ shape = SubResource("CircleShape2D_vcjb0")
 
 [node name="UI" type="Control" parent="GUI"]
 layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HP_Bar" type="TextureProgressBar" parent="GUI/UI"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_top = 108.0
+offset_right = 463.0
+offset_bottom = 148.0
+
+[node name="HP" type="Label" parent="GUI/UI/HP_Bar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -21.0
+offset_right = 182.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "HP: 100/100"
 
 [node name="EXP_Bar" type="TextureProgressBar" parent="GUI/UI"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -947.0
-offset_right = 945.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 55.0
+grow_horizontal = 2
 texture_under = SubResource("PlaceholderTexture2D_yoyrg")
 
 [node name="LEVEL" type="Label" parent="GUI/UI/EXP_Bar"]
@@ -223,13 +249,48 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -66.0
-offset_bottom = 42.0
+offset_left = -85.0
+offset_top = 7.0
+offset_right = -19.0
+offset_bottom = 49.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 30
 text = "Lv: 1"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="Clock" type="Label" parent="GUI/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.5
+offset_top = 75.0
+offset_right = 46.5
+offset_bottom = 176.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 35
+text = "Time:"
+horizontal_alignment = 1
+
+[node name="ClockTime" type="Label" parent="GUI/UI/Clock"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -57.5
+offset_top = -116.0
+offset_right = 57.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 45
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="LvUP" type="Panel" parent="GUI/UI"]
 unique_name_in_owner = true
@@ -238,10 +299,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 1595.0
-offset_top = 229.0
-offset_right = 2194.0
-offset_bottom = 810.0
+offset_left = 1170.0
+offset_top = 249.5
+offset_right = 1769.0
+offset_bottom = 830.5
 grow_horizontal = 2
 
 [node name="UP_label" type="Label" parent="GUI/UI/LvUP"]
@@ -270,6 +331,24 @@ scale = Vector2(2.5, 2.5)
 
 [node name="UP_sound" type="AudioStreamPlayer" parent="GUI/UI/LvUP"]
 unique_name_in_owner = true
+
+[node name="WeaponsGot" type="GridContainer" parent="GUI/UI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 37.0
+offset_top = 184.0
+offset_right = 437.0
+offset_bottom = 216.0
+columns = 10
+
+[node name="ItemsGot" type="GridContainer" parent="GUI/UI"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 37.0
+offset_top = 215.0
+offset_right = 437.0
+offset_bottom = 247.0
+columns = 10
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attacks/SpearTimer" to="." method="_on_spear_timer_timeout"]

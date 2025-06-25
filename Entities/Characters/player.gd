@@ -2,11 +2,13 @@ extends CharacterBody2D
 
 
 var SPEED = 150.0
-var hp = 100
+var hp = 101
+var max_hp = 100
 var prev_direction = Vector2.RIGHT
 var exp = 0
 var player_level = 1
 var all_exp = 0
+var time = 0
 
 
 # Тут находятся оружия (смысл этого хардкода, если VampSurv - рогалик - непонятно)
@@ -41,6 +43,12 @@ var enemy_near = []
 @onready var up_opts = get_node("%UP_Options")
 @onready var up_sound = get_node("%UP_sound")
 @onready var option = preload("res://Utility/weap_item.tscn")
+@onready var hpbar = get_node("%HP_Bar")
+@onready var hpval = get_node("%HP")
+@onready var clock = get_node("%ClockTime")
+@onready var weaponsgot = get_node("%WeaponsGot")
+@onready var itemsgot = get_node("%ItemsGot")
+@onready var packslot = preload("res://Utility/Inventory.tscn")
 
 
 var backpack = []
@@ -53,6 +61,7 @@ var more = 0
 func _ready() -> void:
 	lvup.visible = false
 	attack()
+	_on_hurt_box_hurt(0, 0, 0)
 	set_expBar(exp, cap_calc())
 
 func _physics_process(delta: float) -> void:
@@ -82,12 +91,12 @@ func movement():
 
 func attack():
 	if spear_level > 0:
-		speartimer.wait_time = spear_speed
+		speartimer.wait_time = spear_speed * (1 - cooldown)
 		if speartimer.is_stopped():
 			speartimer.start()
 			
 	if shippu_level > 0:
-		shipputimer.wait_time = shippu_speed
+		shipputimer.wait_time = shippu_speed * (1 - cooldown)
 		if shipputimer.is_stopped():
 			shipputimer.start()
 			
@@ -95,12 +104,15 @@ func attack():
 		spawn_stick()
 
 func _on_hurt_box_hurt(damage, _angle, _knockback) -> void:
-	hp -= damage
+	hp -= clamp(damage-armor, 1.0, 999.0)
+	hpbar.max_value = max_hp
+	hpbar.value = hp
+	hpval.text = str("HP: ", int(hp), "/", int(max_hp))
 	#print(hp)
 
 
 func _on_spear_timer_timeout() -> void:
-	spear_bullets += spear_magazine
+	spear_bullets += spear_magazine + more
 	spearattacktimer.start()
 
 
@@ -119,7 +131,7 @@ func _on_spear_attack_timer_timeout() -> void:
 			
 			
 func _on_shippu_timer_timeout() -> void:
-	shippu_bullets += shippu_magazine
+	shippu_bullets += shippu_magazine + more
 	shippuattacktimer.start()
 
 
@@ -204,7 +216,7 @@ func levelup():
 	up_sound.play()
 	lv_label.text = str("Lv: ", player_level)
 	var tween = lvup.create_tween()
-	tween.tween_property(lvup, "position", Vector2(-299.5, 229), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.tween_property(lvup, "position", Vector2(660.5, 249.5), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	tween.play()
 	lvup.visible = true
 	var options = 0
@@ -217,13 +229,37 @@ func levelup():
 	get_tree().paused = true
 	
 func upgrade_player(upgrade):
+	match upgrade:
+		"spear1":
+			spear_level = 1
+			spear_magazine +=1
+		"spear2":
+			spear_level = 2
+			spear_magazine +=1
+		"shippu1":
+			shippu_level = 1
+			spear_magazine +=1
+		"shippu2":
+			spear_level = 2
+			spear_magazine +=1
+		"shippu3":
+			spear_level = 3
+			spear_magazine +=1
+		"armor1", "armor2", "armor3", "armor4":
+			armor += 1.5
+		"food":
+			hp += 20
+			hp = clamp(hp, 0, max_hp)
+	
+	display_pack(upgrade)
+	attack()
 	var options = up_opts.get_children()
 	for i in options:
 		i.queue_free()
 	choptions.clear()
 	backpack.append(upgrade)
 	lvup.visible = false
-	lvup.position = Vector2(1595.0, 229)
+	lvup.position = Vector2(2130.0, 249.5)
 	get_tree().paused = false
 	exp_calc(0)
 
@@ -255,3 +291,29 @@ func get_random_item():
 		return random
 	else:
 		return null
+		
+func change_time(argtime = 0):
+	time = argtime
+	var min = int(time / 60.0)
+	var sec = time % 60
+	if min < 10:
+		min = str(0, min)
+	if sec < 10:
+		sec = str(0, sec)
+	clock.text = str(min, ":", sec)
+	
+func display_pack(upgrade):
+	var name = UpgradeDb.UPGRADES[upgrade]["name"]
+	var type = UpgradeDb.UPGRADES[upgrade]["type"]
+	if type != "food":
+		var collected = []
+		for i in backpack:
+			collected.append(UpgradeDb.UPGRADES[i]["name"])
+		if name not in collected:
+			var slot = packslot.instantiate()
+			slot.upgrade = upgrade
+			match type:
+				"weapon":
+					weaponsgot.add_child(slot)
+				"item":
+					itemsgot.add_child(slot)

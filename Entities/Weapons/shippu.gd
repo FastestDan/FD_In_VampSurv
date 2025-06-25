@@ -22,9 +22,27 @@ func _ready():
 		1:
 			hp = 9999
 			speed = 150
-			damage = 5
+			damage = 3
 			knockback = 100
-			size = 1.0
+			size = 1.0 * (1 + player.add_size)
+		2:
+			hp = 9999
+			speed = 150
+			damage = 3
+			knockback = 100
+			size = 1.0 * (1 + player.add_size)
+		3:
+			hp = 9999
+			speed = 150
+			damage = 3
+			knockback = 100
+			size = 1.0 * (1 + player.add_size)
+		4:
+			hp = 9999
+			speed = 150
+			damage = 3
+			knockback = 125
+			size = 1.0 * (1 + player.add_size)
 			
 	var move_to_less = Vector2.ZERO
 	var move_to_more = Vector2.ZERO
