@@ -32,6 +32,8 @@ collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_sfaxe")
 hp = 40
+knockback_recover = 5.0
+exp = 3
 damage = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

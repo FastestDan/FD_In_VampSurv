@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://1t6ucwcdcdhe"]
+
+[ext_resource type="Script" uid="uid://d16of6rs12phn" path="res://Entities/Weapons/fd.gd" id="1_vdukf"]
+[ext_resource type="Texture2D" uid="uid://b1bfxflg5ilum" path="res://Graphics/Weapons/FD_FIST_WAN.png" id="2_kh5uy"]
+[ext_resource type="AudioStream" uid="uid://dhodv5eijh8nb" path="res://Audio/SOUND_TEST.wav" id="3_ms7ff"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ms7ff"]
+size = Vector2(220, 260)
+
+[node name="FD_Fist" type="Area2D" groups=["attack"]]
+top_level = true
+scale = Vector2(0.1, 0.1)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_vdukf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -0.785398
+scale = Vector2(10, 10)
+texture = ExtResource("2_kh5uy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(-4.76837e-06, -7.15255e-06)
+rotation = -0.785398
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_ms7ff")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ms7ff")
+volume_db = -5.0
+pitch_scale = 1.5
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

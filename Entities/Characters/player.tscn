@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b0ieun4sf4eyv"]
+[gd_scene load_steps=56 format=3 uid="uid://b0ieun4sf4eyv"]
 
 [ext_resource type="Script" uid="uid://dpji8d2ncu82l" path="res://Entities/Characters/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://3eou2v4m0p0k" path="res://Graphics/Characters/Alpha_B_Idle.png" id="2_7d4v3"]
@@ -10,6 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://ba4rmvodc76yr" path="res://Graphics/Characters/FD_OB_Idle_Mirror.png" id="6_a1wdn"]
 [ext_resource type="Texture2D" uid="uid://pkuk74vm6f2t" path="res://Graphics/Characters/FD_OB_Move.png" id="7_6twxx"]
 [ext_resource type="Texture2D" uid="uid://m573gisbgk0i" path="res://Graphics/Characters/FD_OB_Move_Mirror.png" id="8_1kogh"]
+[ext_resource type="FontFile" uid="uid://bh6bwmafcn041" path="res://Utility/8bit.ttf" id="11_1ektq"]
+[ext_resource type="Texture2D" uid="uid://coew12tw8j2rt" path="res://Graphics/Utility/RedBar.png" id="11_6twxx"]
+[ext_resource type="Texture2D" uid="uid://2e45dvn8pdk" path="res://Graphics/Utility/GreenBar.png" id="12_1kogh"]
+[ext_resource type="Texture2D" uid="uid://du315g83vm5ib" path="res://Graphics/Utility/BlackFrame.png" id="14_8pofa"]
+[ext_resource type="Texture2D" uid="uid://b2wvim733r6qg" path="res://Graphics/Utility/OrangeBar.png" id="15_uxjav"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8pofa"]
 atlas = ExtResource("2_7d4v3")
@@ -316,8 +321,6 @@ radius = 37.2086
 [sub_resource type="CircleShape2D" id="CircleShape2D_vcjb0"]
 radius = 6.81175
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yoyrg"]
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(2.5, 2.5)
 motion_mode = 1
@@ -325,14 +328,12 @@ script = ExtResource("1_4flbx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8kmxx")
-animation = &"FD_OB_Idle"
+animation = &"Dan_Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_micro")
 
 [node name="HurtBox" parent="." instance=ExtResource("5_yoyrg")]
-visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
@@ -342,6 +343,22 @@ shape = SubResource("RectangleShape2D_t6wfi")
 zoom = Vector2(2.5, 2.5)
 
 [node name="Attacks" type="Node2D" parent="."]
+
+[node name="FDTimer" type="Timer" parent="Attacks"]
+unique_name_in_owner = true
+wait_time = 1.5
+
+[node name="FDAttackTimer" type="Timer" parent="Attacks/FDTimer"]
+unique_name_in_owner = true
+wait_time = 0.075
+
+[node name="AlphaTimer" type="Timer" parent="Attacks"]
+unique_name_in_owner = true
+wait_time = 1.5
+
+[node name="AlphaAttackTimer" type="Timer" parent="Attacks/AlphaTimer"]
+unique_name_in_owner = true
+wait_time = 0.1
 
 [node name="SpearTimer" type="Timer" parent="Attacks"]
 unique_name_in_owner = true
@@ -407,6 +424,8 @@ layout_mode = 1
 offset_top = 108.0
 offset_right = 463.0
 offset_bottom = 148.0
+texture_under = ExtResource("11_6twxx")
+texture_progress = ExtResource("12_1kogh")
 
 [node name="HP" type="Label" parent="GUI/UI/HP_Bar"]
 unique_name_in_owner = true
@@ -416,13 +435,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 18.0
+offset_left = 9.0
 offset_top = -21.0
-offset_right = 182.0
-offset_bottom = 21.0
+offset_right = 201.0
+offset_bottom = 25.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("11_1ektq")
+theme_override_font_sizes/font_size = 45
 text = "HP: 100/100"
 
 [node name="EXP_Bar" type="TextureProgressBar" parent="GUI/UI"]
@@ -432,7 +452,8 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 55.0
 grow_horizontal = 2
-texture_under = SubResource("PlaceholderTexture2D_yoyrg")
+texture_over = ExtResource("14_8pofa")
+texture_progress = ExtResource("15_uxjav")
 
 [node name="LEVEL" type="Label" parent="GUI/UI/EXP_Bar"]
 unique_name_in_owner = true
@@ -445,7 +466,8 @@ offset_top = 7.0
 offset_right = -19.0
 offset_bottom = 49.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("11_1ektq")
+theme_override_font_sizes/font_size = 45
 text = "Lv: 1"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -460,7 +482,8 @@ offset_top = 75.0
 offset_right = 46.5
 offset_bottom = 176.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 35
+theme_override_fonts/font = ExtResource("11_1ektq")
+theme_override_font_sizes/font_size = 50
 text = "Time:"
 horizontal_alignment = 1
 
@@ -478,7 +501,8 @@ offset_right = 57.5
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 45
+theme_override_fonts/font = ExtResource("11_1ektq")
+theme_override_font_sizes/font_size = 60
 text = "00:00"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -506,7 +530,7 @@ offset_top = 22.0
 offset_right = 66.0
 offset_bottom = 64.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 45
 text = "Level Up!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -528,20 +552,26 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_left = 37.0
 offset_top = 184.0
-offset_right = 437.0
+offset_right = 450.0
 offset_bottom = 216.0
-columns = 10
+scale = Vector2(2.5, 2.5)
+columns = 3
 
 [node name="ItemsGot" type="GridContainer" parent="GUI/UI"]
 unique_name_in_owner = true
 layout_mode = 2
 offset_left = 37.0
-offset_top = 215.0
+offset_top = 273.0
 offset_right = 437.0
-offset_bottom = 247.0
-columns = 10
+offset_bottom = 305.0
+scale = Vector2(2.5, 2.5)
+columns = 5
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="timeout" from="Attacks/FDTimer" to="." method="_on_fd_timer_timeout"]
+[connection signal="timeout" from="Attacks/FDTimer/FDAttackTimer" to="." method="_on_fd_attack_timer_timeout"]
+[connection signal="timeout" from="Attacks/AlphaTimer" to="." method="_on_alpha_timer_timeout"]
+[connection signal="timeout" from="Attacks/AlphaTimer/AlphaAttackTimer" to="." method="_on_alpha_attack_timer_timeout"]
 [connection signal="timeout" from="Attacks/SpearTimer" to="." method="_on_spear_timer_timeout"]
 [connection signal="timeout" from="Attacks/SpearTimer/SpearAttackTimer" to="." method="_on_spear_attack_timer_timeout"]
 [connection signal="timeout" from="Attacks/ShippuTimer" to="." method="_on_shippu_timer_timeout"]

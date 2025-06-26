@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxsu6t8io6pmy"]
+[gd_scene load_steps=4 format=3 uid="uid://bxsu6t8io6pmy"]
 
 [ext_resource type="Texture2D" uid="uid://4in74iphx22a" path="res://Graphics/Upgrades/ICON_TEST.png" id="1_h8stf"]
 [ext_resource type="Script" uid="uid://bdyd6v5bh3nf4" path="res://Utility/weap_item.gd" id="1_xrrv3"]
+[ext_resource type="FontFile" uid="uid://bh6bwmafcn041" path="res://Utility/8bit.ttf" id="3_yehlm"]
 
 [node name="WeapItem" type="ColorRect"]
 custom_minimum_size = Vector2(180, 50)
 offset_right = 180.0
 offset_bottom = 50.0
-color = Color(1, 0.824, 0.04, 1)
+color = Color(0.88, 0.72512, 0.0352, 1)
 script = ExtResource("1_xrrv3")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -24,6 +25,8 @@ offset_right = 160.0
 offset_bottom = 160.0
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("1_h8stf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 0
@@ -32,7 +35,8 @@ offset_top = 2.0
 offset_right = 142.0
 offset_bottom = 25.0
 scale = Vector2(0.25, 0.25)
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("3_yehlm")
+theme_override_font_sizes/font_size = 80
 text = "Blank Memory"
 
 [node name="Desc" type="Label" parent="."]
@@ -42,18 +46,20 @@ offset_top = 27.0
 offset_right = 1171.0
 offset_bottom = 180.0
 scale = Vector2(0.15, 0.15)
-theme_override_font_sizes/font_size = 40
+theme_override_fonts/font = ExtResource("3_yehlm")
+theme_override_font_sizes/font_size = 60
 text = "A white USB Drive. Has no data."
 autowrap_mode = 3
 
 [node name="Lv" type="Label" parent="."]
 layout_mode = 0
-offset_left = 150.0
-offset_top = 2.0
-offset_right = 292.0
-offset_bottom = 92.0
+offset_left = 146.0
+offset_top = 1.0
+offset_right = 300.0
+offset_bottom = 91.0
 scale = Vector2(0.2, 0.2)
-theme_override_font_sizes/font_size = 65
+theme_override_fonts/font = ExtResource("3_yehlm")
+theme_override_font_sizes/font_size = 85
 text = "Lv: 1"
 horizontal_alignment = 2
 

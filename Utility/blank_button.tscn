@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgvudanh716pv"]
+[gd_scene load_steps=3 format=3 uid="uid://cgvudanh716pv"]
 
 [ext_resource type="Script" uid="uid://bau70yff8nxla" path="res://Utility/blank_button.gd" id="1_4y3gp"]
+[ext_resource type="FontFile" uid="uid://bh6bwmafcn041" path="res://Utility/8bit.ttf" id="1_jcmgc"]
 
 [node name="BlankButton" type="Button"]
 offset_right = 8.0
 offset_bottom = 8.0
-theme_override_font_sizes/font_size = 75
+theme_override_fonts/font = ExtResource("1_jcmgc")
+theme_override_font_sizes/font_size = 100
 text = "Blank"
 script = ExtResource("1_4y3gp")
 

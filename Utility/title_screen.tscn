@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxfyrnji67y30"]
+[gd_scene load_steps=4 format=3 uid="uid://cxfyrnji67y30"]
 
 [ext_resource type="Script" uid="uid://ud1fwyoj6h0b" path="res://Utility/title_screen.gd" id="1_i5ewn"]
 [ext_resource type="PackedScene" uid="uid://cgvudanh716pv" path="res://Utility/blank_button.tscn" id="2_ocjmq"]
+[ext_resource type="FontFile" uid="uid://bh6bwmafcn041" path="res://Utility/8bit.ttf" id="2_yrc1q"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -20,7 +21,8 @@ offset_left = -576.0
 offset_right = 576.0
 offset_bottom = 137.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("2_yrc1q")
+theme_override_font_sizes/font_size = 125
 text = "FD in Vampire Survivors"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -71,7 +73,8 @@ offset_left = -511.0
 offset_right = 511.0
 offset_bottom = 137.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("2_yrc1q")
+theme_override_font_sizes/font_size = 125
 text = "Select your character"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -88,7 +91,8 @@ offset_left = -511.0
 offset_right = 511.0
 offset_bottom = 137.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("2_yrc1q")
+theme_override_font_sizes/font_size = 125
 text = "Select a level"
 horizontal_alignment = 1
 vertical_alignment = 1

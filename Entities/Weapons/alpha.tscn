@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://yj4gyopmpofu"]
+
+[ext_resource type="Script" uid="uid://clbow0swpnpb6" path="res://Entities/Weapons/alpha.gd" id="1_c8sl1"]
+[ext_resource type="Texture2D" uid="uid://b8aehbohxym1j" path="res://Graphics/Weapons/AlphaBlasterWeapon.png" id="2_lb1jx"]
+[ext_resource type="AudioStream" uid="uid://dhodv5eijh8nb" path="res://Audio/SOUND_TEST.wav" id="3_crq3h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crq3h"]
+radius = 6.36397
+height = 29.6985
+
+[node name="AlphaBlaster" type="Area2D" groups=["attack"]]
+top_level = true
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_c8sl1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.785398
+texture = ExtResource("2_lb1jx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(-4.76837e-06, 4.76837e-06)
+rotation = -0.785398
+shape = SubResource("CapsuleShape2D_crq3h")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_crq3h")
+volume_db = -5.0
+pitch_scale = 1.5
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
