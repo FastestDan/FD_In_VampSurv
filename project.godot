@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="FD_In_VampSurv"
-config/version="0.08"
+config/name="FD: Shattered Self"
+config/version="0.1"
 run/main_scene="uid://cxfyrnji67y30"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Graphics/icon.svg"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://6ab4j70jc882"]
+[gd_scene load_steps=21 format=4 uid="uid://6ab4j70jc882"]
 
 [ext_resource type="Script" uid="uid://6d17hbv6b8y2" path="res://Levels/test_place.gd" id="1_fq31j"]
 [ext_resource type="Texture2D" uid="uid://bbhkc2cwiipgy" path="res://Graphics/Outside_A2_VS.png" id="2_64u15"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dosut8m42pclc" path="res://Entities/Enemies/Teki1_smol.tscn" id="6_4lwi8"]
 [ext_resource type="PackedScene" uid="uid://xuvtfp5dggeq" path="res://Entities/Objects/exp_up.tscn" id="7_4lwi8"]
 [ext_resource type="PackedScene" uid="uid://vwddw0anjpw5" path="res://Entities/Enemies/Teki1_beeg.tscn" id="7_ka1i8"]
+[ext_resource type="PackedScene" uid="uid://tx71xglm8waj" path="res://Entities/Enemies/Teki1_giga.tscn" id="8_jxpga"]
+[ext_resource type="AudioStream" uid="uid://b0qcbcxyvevu3" path="res://Audio/Field1.ogg" id="9_688gq"]
 [ext_resource type="Script" uid="uid://74yka6n15kiq" path="res://Levels/bgm.gd" id="9_w5ock"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_64u15"]
@@ -1658,6 +1660,24 @@ enemy_num = 3
 enemy_spawn_delay = 3
 metadata/_custom_type_script = "uid://bm37djycivhqo"
 
+[sub_resource type="Resource" id="Resource_bnkd6"]
+script = ExtResource("5_x1c1m")
+time_start = 180
+time_end = 300
+enemy = ExtResource("8_jxpga")
+enemy_num = 3
+enemy_spawn_delay = 5
+metadata/_custom_type_script = "uid://bm37djycivhqo"
+
+[sub_resource type="Resource" id="Resource_vo4e0"]
+script = ExtResource("5_x1c1m")
+time_start = 300
+time_end = 500
+enemy = ExtResource("8_jxpga")
+enemy_num = 5
+enemy_spawn_delay = 2
+metadata/_custom_type_script = "uid://bm37djycivhqo"
+
 [node name="TEST_PLACE" type="Node"]
 script = ExtResource("1_fq31j")
 
@@ -1679,7 +1699,7 @@ position = Vector2(977, 575)
 [node name="Player" parent="." instance=ExtResource("5_jnlao")]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_ktb0f")]
-spawns = Array[ExtResource("5_x1c1m")]([SubResource("Resource_ka1i8"), SubResource("Resource_x1c1m"), SubResource("Resource_w5ock"), SubResource("Resource_688gq"), SubResource("Resource_jxpga")])
+spawns = Array[ExtResource("5_x1c1m")]([SubResource("Resource_ka1i8"), SubResource("Resource_x1c1m"), SubResource("Resource_w5ock"), SubResource("Resource_688gq"), SubResource("Resource_jxpga"), SubResource("Resource_bnkd6"), SubResource("Resource_vo4e0")])
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
 
@@ -1688,6 +1708,8 @@ position = Vector2(1319, 466)
 exp = 10
 
 [node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_688gq")
+volume_db = -7.5
 script = ExtResource("9_w5ock")
 
 [connection signal="playerdeath" from="Player" to="bgm" method="_on_player_playerdeath"]
