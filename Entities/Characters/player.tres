@@ -202,7 +202,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Dan_Idle",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [],
 "loop": true,

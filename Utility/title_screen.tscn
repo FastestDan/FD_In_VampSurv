@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxfyrnji67y30"]
+[gd_scene load_steps=5 format=3 uid="uid://cxfyrnji67y30"]
 
 [ext_resource type="Script" uid="uid://ud1fwyoj6h0b" path="res://Utility/title_screen.gd" id="1_i5ewn"]
 [ext_resource type="PackedScene" uid="uid://cgvudanh716pv" path="res://Utility/blank_button.tscn" id="2_ocjmq"]
 [ext_resource type="FontFile" uid="uid://bh6bwmafcn041" path="res://Utility/8bit.ttf" id="2_yrc1q"]
+[ext_resource type="SpriteFrames" uid="uid://464tbxkxwjuw" path="res://Entities/Characters/player.tres" id="4_yrc1q"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -35,6 +36,7 @@ offset_bottom = 755.5
 text = "Play"
 
 [node name="SettingsButton" parent="MainLayout" instance=ExtResource("2_ocjmq")]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -79,9 +81,68 @@ text = "Select your character"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="FDButton" parent="CharaSelectLayout" instance=ExtResource("2_ocjmq")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -223.0
+offset_top = -273.0
+offset_right = 223.0
+offset_bottom = -162.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "FastestDan"
+
+[node name="CharaSprite" type="AnimatedSprite2D" parent="CharaSelectLayout/FDButton"]
+modulate = Color(1, 1, 1, 0.411765)
+position = Vector2(221, -234)
+scale = Vector2(-15, 15)
+sprite_frames = ExtResource("4_yrc1q")
+animation = &"FD_OB_Idle_Mirror"
+
+[node name="AlphaButton" parent="CharaSelectLayout" instance=ExtResource("2_ocjmq")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -446.0
+offset_top = -273.0
+offset_right = -238.0
+offset_bottom = -162.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Alpha"
+
+[node name="CharaSprite" type="AnimatedSprite2D" parent="CharaSelectLayout/AlphaButton"]
+modulate = Color(1, 1, 1, 0.411765)
+position = Vector2(104, -234)
+scale = Vector2(-15, 15)
+sprite_frames = ExtResource("4_yrc1q")
+animation = &"A_B_Idle"
+
+[node name="BackButton" parent="CharaSelectLayout" instance=ExtResource("2_ocjmq")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -140.0
+offset_right = 106.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back
+"
+
 [node name="SettingsLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="LevelSelectLayout" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="LevelLabel" type="Label" parent="LevelSelectLayout"]
 anchors_preset = 5
@@ -97,4 +158,16 @@ text = "Select a level"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DanSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(306, 581)
+scale = Vector2(20, 20)
+sprite_frames = ExtResource("4_yrc1q")
+animation = &"Dan_Idle"
+frame = 1
+frame_progress = 0.193345
+
 [connection signal="click_end" from="MainLayout/PlayButton" to="." method="_on_play_button_click_end"]
+[connection signal="click_end" from="MainLayout/ExitButton" to="." method="_on_exit_button_click_end"]
+[connection signal="click_end" from="CharaSelectLayout/FDButton" to="." method="_on_fd_button_click_end"]
+[connection signal="click_end" from="CharaSelectLayout/AlphaButton" to="." method="_on_alpha_button_click_end"]
+[connection signal="click_end" from="CharaSelectLayout/BackButton" to="." method="_on_back_button_click_end"]

@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cs6dgunrt2bww"]
+[gd_scene load_steps=5 format=3 uid="uid://cs6dgunrt2bww"]
 
 [ext_resource type="Texture2D" uid="uid://c4ykd3uveuntd" path="res://Utility/P5Tarot - Back.png" id="1_4g8t8"]
 [ext_resource type="Script" uid="uid://dpk8asmsbaxhk" path="res://Entities/Enemies/bakuhatsu.gd" id="1_32vda"]
-[ext_resource type="AudioStream" uid="uid://bts7l1bbpfvrk" path="res://Audio/BAKU_TEST.wav" id="2_4g8t8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4g8t8"]
 blend_mode = 2
@@ -32,7 +31,6 @@ z_index = 1
 script = ExtResource("1_32vda")
 
 [node name="BakuSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_4g8t8")
 pitch_scale = 1.53
 autoplay = true
 

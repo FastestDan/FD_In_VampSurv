@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://vwddw0anjpw5"]
+[gd_scene load_steps=9 format=3 uid="uid://vwddw0anjpw5"]
 
 [ext_resource type="Script" uid="uid://thocaxo3yeod" path="res://Entities/Enemies/enemy.gd" id="1_sfaxe"]
 [ext_resource type="Texture2D" uid="uid://ceu35o3pvpkpw" path="res://Graphics/icon.svg" id="2_s0bpn"]
 [ext_resource type="PackedScene" uid="uid://mb6e0qvmpqwr" path="res://Utility/hurt_box.tscn" id="3_t5h18"]
 [ext_resource type="PackedScene" uid="uid://bjoyg867elcu3" path="res://Utility/hit_box.tscn" id="4_6eqev"]
-[ext_resource type="AudioStream" uid="uid://d1s2qn6m6sdj7" path="res://Audio/DED_TEST.wav" id="5_6b5wf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6rqwt"]
 animations = [{
@@ -58,7 +57,6 @@ collision_layer = 2
 shape = SubResource("RectangleShape2D_ftopr")
 
 [node name="Hit" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_6b5wf")
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 

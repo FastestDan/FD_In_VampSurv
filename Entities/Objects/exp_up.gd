@@ -3,9 +3,9 @@ extends Area2D
 
 @export var exp = 1
 
-var sprite_small = preload("res://Graphics/Objects/EXP_TEST_SMALL.png")
-var sprite_med = preload("res://Graphics/Objects/EXP_TEST_MEDIUM.png")
-var sprite_big = preload("res://Graphics/Objects/EXP_TEST_BIG.png")
+var sprite_small = preload("res://Graphics/Objects/Pixel Arcana - Blank.png")
+var sprite_med = preload("res://Graphics/Objects/Pixel Arcana - Magician.png")
+var sprite_big = preload("res://Graphics/Objects/Pixel Arcana - Hermit.png")
 
 var target = null
 var speed = -1

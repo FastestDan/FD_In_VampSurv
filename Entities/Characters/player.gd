@@ -10,7 +10,7 @@ var player_level = 1
 var all_exp = 0
 var time = 0
 var stango = 0
-var warewa = "Alpha"
+var warewa = "FD"
 
 
 # Тут находятся оружия (смысл этого хардкода, если VampSurv - рогалик - непонятно)
@@ -72,6 +72,13 @@ var enemy_near = []
 @onready var itemsgot = get_node("%ItemsGot")
 @onready var packslot = preload("res://Utility/Inventory.tscn")
 
+@onready var DV = get_node("%DeathVic")
+@onready var dvres = get_node("%DV_Results")
+@onready var death_sound = get_node("%Death_sound")
+@onready var vic_sound = get_node("%Vic_sound")
+
+signal playerdeath
+
 
 var backpack = []
 var choptions = []
@@ -102,7 +109,7 @@ func movement():
 	if vec != Vector2.ZERO:
 		prev_direction = vec.round()
 	velocity = vec.normalized() * SPEED
-	print(velocity)
+	#print(velocity)
 	#if velocity.length() > 0:
 		#$AnimatedSprite2D.play()
 	#else:
@@ -164,7 +171,20 @@ func _on_hurt_box_hurt(damage, _angle, _knockback) -> void:
 	hpbar.max_value = max_hp
 	hpbar.value = hp
 	hpval.text = str("HP: ", int(hp), "/", int(max_hp))
+	if hp <= 0:
+		gameover()
 	#print(hp)
+
+func gameover():
+	DV.visible = true
+	emit_signal("playerdeath")
+	get_tree().paused = true
+	var tween = DV.create_tween()
+	tween.tween_property(DV, "position", Vector2(660.5, 249.5), 1.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	if time >= 300:
+		dvres.text = "You WIN!"
+	else:
+		dvres.text = "You LOSE!"
 
 func _on_fd_timer_timeout() -> void:
 	fd_bullets += fd_magazine + more
@@ -314,6 +334,7 @@ func levelup():
 	lvup.visible = true
 	var options = 0
 	var allop = 3
+	var op_ar = []
 	while options < allop:
 		var choice = option.instantiate()
 		choice.item = get_random_item()
@@ -379,6 +400,7 @@ func upgrade_player(upgrade):
 		"food":
 			hp += 20
 			hp = clamp(hp, 0, max_hp)
+	print("Choice: ", upgrade)
 	
 	display_pack(upgrade)
 	attack()
@@ -438,11 +460,19 @@ func display_pack(upgrade):
 		var collected = []
 		for i in backpack:
 			collected.append(UpgradeDb.UPGRADES[i]["name"])
+		print("Collected: ", collected)
 		if name not in collected:
 			var slot = packslot.instantiate()
 			slot.upgrade = upgrade
 			match type:
 				"unique", "weapon":
 					weaponsgot.add_child(slot)
+					print("Pack weapon: ", upgrade)
 				"item":
 					itemsgot.add_child(slot)
+					print("Pack item: ", upgrade)
+
+
+func _on_menu_btn_click_end() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Utility/title_screen.tscn")

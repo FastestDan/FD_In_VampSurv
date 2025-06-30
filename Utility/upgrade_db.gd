@@ -38,7 +38,7 @@ const UPGRADES = {
 	"alpha1":{
 		"icon": WEAPON_PATH + "AlphaBlasterIcon.png",
 		"name": "Alpha Blaster",
-		"desc": "Energy blast, powered by Alpha Reactor",
+		"desc": "Energy blast, powered by Driver Core",
 		"level": "Lv: 1",
 		"prev": ["alpha1"],
 		"type": "unique"
@@ -70,8 +70,8 @@ const UPGRADES = {
 
 	"spear1":{
 		"icon": WEAPON_PATH + "SPEAR_TEST.png",
-		"name": "Spear",
-		"desc": "A spear that gets thrown at random enemies",
+		"name": "Card",
+		"desc": "A mysterious card that gets thrown at random enemies",
 		"level": "Lv: 1",
 		"prev": [],
 		"type": "weapon"
@@ -80,7 +80,7 @@ const UPGRADES = {
 	"spear2":{
 		"icon": WEAPON_PATH + "SPEAR_TEST.png",
 		"name": "Spear",
-		"desc": "An additional spear is thrown",
+		"desc": "An additional card is thrown",
 		"level": "Lv: 2",
 		"prev": ["spear1"],
 		"type": "weapon"
@@ -88,33 +88,33 @@ const UPGRADES = {
 	"spear3":{
 		"icon": WEAPON_PATH + "SPEAR_TEST.png",
 		"name": "Spear",
-		"desc": "An additional spear is thrown",
-		"level": "Lv: 2",
-		"prev": ["spear1"],
+		"desc": "Card can now hit 2 enemies",
+		"level": "Lv: 3",
+		"prev": ["spear2"],
 		"type": "weapon"
 	},
 	
 	"shippu1":{
-		"icon": WEAPON_PATH + "SPEAR_TEST.png",
+		"icon": WEAPON_PATH + "tornado.png",
 		"name": "Shippu",
-		"desc": "A spear that gets thrown at random enemies",
+		"desc": "A hurricane that blows enemies away",
 		"level": "Lv: 1",
 		"prev": [],
 		"type": "weapon"
 	},
 	
 	"shippu2":{
-		"icon": WEAPON_PATH + "SPEAR_TEST.png",
+		"icon": WEAPON_PATH + "tornado.png",
 		"name": "Shippu",
-		"desc": "An additional spear is thrown",
+		"desc": "An additional hurricane is created",
 		"level": "Lv: 2",
 		"prev": ["shippu1"],
 		"type": "weapon"
 	},
 	"shippu3":{
-		"icon": WEAPON_PATH + "SPEAR_TEST.png",
+		"icon": WEAPON_PATH + "tornado.png",
 		"name": "Shippu",
-		"desc": "An additional spear is thrown",
+		"desc": "An additional hurricane is created. Hurricans do more damage.",
 		"level": "Lv: 3",
 		"prev": ["shippu2"],
 		"type": "weapon"
