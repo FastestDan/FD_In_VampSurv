@@ -24,7 +24,7 @@ offset_bottom = 137.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_yrc1q")
 theme_override_font_sizes/font_size = 125
-text = "FD in Vampire Survivors"
+text = "FD: Shattered Self"
 horizontal_alignment = 1
 vertical_alignment = 1
 
