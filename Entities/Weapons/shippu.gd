@@ -62,7 +62,7 @@ func _ready():
 	
 	
 	var tween_start = create_tween().set_parallel(true)
-	tween_start.tween_property(self, "scale", Vector2(0.25, 0.25) * size, 3).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween_start.tween_property(self, "scale", Vector2(1.5, 1.5) * size, 3).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	var speed_final = speed
 	speed = speed / 5.0
 	tween_start.tween_property(self, "speed", speed_final, 6).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
